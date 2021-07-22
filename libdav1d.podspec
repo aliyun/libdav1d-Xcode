@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'libdav1d'
-  s.version          = '0.8.1'
+  s.version          = '0.8.2'
   s.summary          = 'dav1d is an AV1 decoder :)'
 
 # This description is used to generate tags and improve search results.
@@ -46,7 +46,7 @@ dav1d is a new AV1 cross-platform decoder, open-source, and focused on speed and
                       cp './dav1d/include/dav1d/version.h.in' './dav1d/include/dav1d/version.h'
                       sed -i '' 's/\\@DAV1D_API_VERSION_MAJOR@/5/g' './dav1d/include/dav1d/version.h'
                       sed -i '' 's/\\@DAV1D_API_VERSION_MINOR@/0/g' './dav1d/include/dav1d/version.h'
-                      sed -i '' 's/\\@DAV1D_API_VERSION_PATCH@/0/g' './dav1d/include/dav1d/version.h'
+                      sed -i '' 's/\\@DAV1D_API_VERSION_PATCH@/1/g' './dav1d/include/dav1d/version.h'
                       CMD
   s.preserve_paths = 'dav1d', 'generate'
 end

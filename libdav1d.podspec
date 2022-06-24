@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'libdav1d'
-  s.version          = '0.9.0'
+  s.version          = '1.0.0'
   s.summary          = 'dav1d is an AV1 decoder :)'
 
 # This description is used to generate tags and improve search results.
@@ -31,22 +31,30 @@ dav1d is a new AV1 cross-platform decoder, open-source, and focused on speed and
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'dav1d/src/**/*.{h,c}', 'dav1d/include/**/*.h', 'generate/config.h', 'generate/vcs_version.h', 'generate/tmpl_16/*.c'
-  s.public_header_files = 'dav1d/include/dav1d/*.h'
-  s.exclude_files = 'dav1d/src/arm', 'dav1d/src/ppc', 'dav1d/src/win32', 'dav1d/src/x86', 'dav1d/src/ext', 'dav1d/include/compat'
+  # s.source_files = 'dav1d/src/**/*.{h,c}', 'dav1d/include/**/*.h', 'generate/config.h', 'generate/vcs_version.h', 'generate/tmpl_16/*.c'
+  s.vendored_libraries = 'lib/*.a'
+  s.source_files = 'include/dav1d/*.h'
+  s.public_header_files = 'include/dav1d/*.h'
+  s.header_dir = 'dav1d'
+  # s.exclude_files = 'dav1d/src/arm', 'dav1d/src/ppc', 'dav1d/src/win32', 'dav1d/src/x86', 'dav1d/src/ext', 'dav1d/include/compat'
   
   s.pod_target_xcconfig = {
     'USE_HEADERMAP' => 'NO',
     'GCC_WARN_UNINITIALIZED_AUTOS' => 'NO',
-    'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/libdav1d/dav1d ${PODS_TARGET_SRCROOT}/dav1d ${PODS_ROOT}/libdav1d/dav1d/include ${PODS_TARGET_SRCROOT}/dav1d/include ${PODS_ROOT}/libdav1d/generate ${PODS_TARGET_SRCROOT}/generate'
+    'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/libdav1d/dav1d ${PODS_TARGET_SRCROOT}/dav1d ${PODS_ROOT}/libdav1d/dav1d/include ${PODS_TARGET_SRCROOT}/dav1d/include'
   }
   # hack to fix the header include issue from CocoaPods. This effect the static library target form, but not multiple projects
-  s.prepare_command = <<-CMD
-                      sed -i '' 's/\\"common.h\\"/\\"dav1d\\/common.h\\"/g' './dav1d/src/fg_apply_tmpl.c'
-                      cp './dav1d/include/dav1d/version.h.in' './dav1d/include/dav1d/version.h'
-                      sed -i '' 's/\\@DAV1D_API_VERSION_MAJOR@/5/g' './dav1d/include/dav1d/version.h'
-                      sed -i '' 's/\\@DAV1D_API_VERSION_MINOR@/1/g' './dav1d/include/dav1d/version.h'
-                      sed -i '' 's/\\@DAV1D_API_VERSION_PATCH@/0/g' './dav1d/include/dav1d/version.h'
-                      CMD
-  s.preserve_paths = 'dav1d', 'generate'
+  # s.prepare_command = <<-CMD
+  #                     sed -i '' 's/\\"common.h\\"/\\"dav1d\\/common.h\\"/g' './dav1d/src/fg_apply_tmpl.c'
+  #                     cp './dav1d/include/dav1d/version.h.in' './dav1d/include/dav1d/version.h'
+  #                     sed -i '' 's/\\@DAV1D_API_VERSION_MAJOR@/5/g' './dav1d/include/dav1d/version.h'
+  #                     sed -i '' 's/\\@DAV1D_API_VERSION_MINOR@/1/g' './dav1d/include/dav1d/version.h'
+  #                     sed -i '' 's/\\@DAV1D_API_VERSION_PATCH@/0/g' './dav1d/include/dav1d/version.h'
+  #                     CMD
+  # s.pod_target_xcconfig = { 
+  #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' 
+  #   }
+  # s.user_target_xcconfig = { 
+  # 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  # }
 end

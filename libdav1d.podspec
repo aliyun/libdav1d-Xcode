@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'libdav1d'
-  s.version          = '1.0.1'
+  s.version          = '1.0.0-aliyun'
   s.summary          = 'dav1d is an AV1 decoder :)'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ dav1d is a new AV1 cross-platform decoder, open-source, and focused on speed and
   s.homepage         = 'https://github.com/videolan/dav1d'
   s.license          = { :type => 'BSD 2-clause' }
   s.author           = { 'Alliance for Open Media' => 'https://aomedia.org' }
-  s.source           = { :git => 'https://github.com/SDWebImage/libdav1d-Xcode.git', :tag => s.version.to_s, :submodules => true }
+  s.source           = { :git => 'http://gitlab.alibaba-inc.com/smartdrive/libdav1d-Xcode.git', :tag => s.version.to_s, :submodules => true }
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
